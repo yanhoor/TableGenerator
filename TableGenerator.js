@@ -2,14 +2,12 @@
 * @Author: yanhoor
 * @Date:   2017-10-26 22:37:06
 * @Last Modified by:   yanhoor
-* @Last Modified time: 2017-10-27 23:02:39
+* @Last Modified time: 2017-10-27 23:24:32
 */
 window.onload = function(){
 	var columnE = document.getElementById("column");
 	var rowE = document.getElementById("row");
 	var button = document.getElementById("generate");
-	var numberE = document.getElementById("number");
-	var colorE = document.getElementById("color");
 	var displayE = document.getElementById("infoDiv");
 
 	var EventUtil = {
@@ -74,7 +72,7 @@ window.onload = function(){
 	function displayInfo(){
 		displayE.style.display = "block";
 		var currentTd = event.target;
-		
+
 		//判断作用：防止选择多个单元格时current为table
 		if (currentTd.tagName.toLowerCase() == "td") {
 			var innerHTML = "<span>你所选的区域数字为：" + currentTd.innerText + "</span>" +
