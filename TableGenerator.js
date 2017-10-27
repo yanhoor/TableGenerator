@@ -2,7 +2,7 @@
 * @Author: yanhoor
 * @Date:   2017-10-26 22:37:06
 * @Last Modified by:   yanhoor
-* @Last Modified time: 2017-10-27 12:23:21
+* @Last Modified time: 2017-10-27 23:02:39
 */
 window.onload = function(){
 	var columnE = document.getElementById("column");
@@ -10,6 +10,7 @@ window.onload = function(){
 	var button = document.getElementById("generate");
 	var numberE = document.getElementById("number");
 	var colorE = document.getElementById("color");
+	var displayE = document.getElementById("infoDiv");
 
 	var EventUtil = {
 		addHandler: function(element, type, handler){
@@ -47,7 +48,7 @@ window.onload = function(){
 
 		var table = document.createElement("table");
 		table.border = 1;
-		table.width = "1100px";
+		EventUtil.addHandler(table, "click", displayInfo);
 
 		var tbody =document.createElement("tbody");
 		table.appendChild(tbody);
@@ -56,9 +57,32 @@ window.onload = function(){
 			tbody.insertRow(i);
 			for(var j = 0; j < columns; j++){
 				tbody.rows[i].insertCell(j);
+				var randomNum = 1 + 15 * Math.random();
+				var randomColorNum = (0xf0f0f0 + 1) * Math.random();
+				var randomColor = (Math.floor(randomColorNum)).toString(16);
+				while(randomColor.length < 6){
+					randomColor += "0";
+				}
+				tbody.rows[i].cells[j].appendChild(document.createTextNode(Math.floor(randomNum)));
+				tbody.rows[i].cells[j].style.background = "#" + randomColor;
 			}
 		}
 
 		document.body.appendChild(table);
+	}
+
+	function displayInfo(){
+		displayE.style.display = "block";
+		var currentTd = event.target;
+		
+		//判断作用：防止选择多个单元格时current为table
+		if (currentTd.tagName.toLowerCase() == "td") {
+			var innerHTML = "<span>你所选的区域数字为：" + currentTd.innerText + "</span>" +
+			"<span>，颜色为：</span>" +
+			"<em style=\"background: " + currentTd.style.backgroundColor + "\"></em>" +
+			"<span>" + currentTd.style.background + "</span>";
+			displayE.innerHTML = "";
+			displayE.innerHTML = innerHTML;
+		}
 	}
 };

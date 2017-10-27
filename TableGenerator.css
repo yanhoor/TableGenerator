@@ -2,22 +2,31 @@
 * @Author: yanhoor
 * @Date:   2017-10-26 22:36:53
 * @Last Modified by:   yanhoor
-* @Last Modified time: 2017-10-27 12:03:42
+* @Last Modified time: 2017-10-27 23:12:54
 */
 #infoDiv{
 	position: relative;
 	top: 10px;
+	display: none;
 }
 
 table{
 	position: relative;
 	top: 30px;
 	border: 1px solid black;
-	border-collapse: collapse;
 }
 
 td{
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	border: 1px solid black;
+	text-align: center;
+}
+
+#infoDiv em{
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	position: relative;
+	top: 5px;
 }
